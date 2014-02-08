@@ -9,7 +9,7 @@
 **Manual installation**
 
 - Download and unzip, or git clone, the plug-in into `Packages/SublimeAVR` folder.
-- To access `Packages` folder open ST2/3 and select *Preferences - Browse packages...*
+- To access `Packages` folder, open Sublime Text and select *Preferences - Browse packages...*
 - Note that the plug-in can't be installed *in the Sublime Text 3 way* in to the `Installed Packages` folder.
 
 ## Usage
@@ -25,7 +25,6 @@ Press `CTRL+SHIFT+P` to bring the command palette into view. Next type
 ### Shortcut keys
 
 - `CTRL+B` builds the project
-- `CTRL+SHIFT+B` uploads the program to the board (flashes the board)
 - `ALT+D ALT+D` goes to the definition of whatever is under the current cursor position
 - `ALT+D ALT+I` goes to the implementation of whatever is under the current cursor position
 - `ALT+D ALT+B` come back to where ever you were before hitting goto the definition or implementation
