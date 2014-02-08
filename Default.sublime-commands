@@ -1,0 +1,6 @@
+[
+	{
+		"caption": "AVR: Create New Project",
+		"command": "avr_new_project"
+	}
+]
