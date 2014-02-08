@@ -1,4 +1,4 @@
-# AVR (8-bit) Sublime Text 3 plug-in
+# AVR (8-bit) Sublime Text 2/3 plug-in
 
 ## Installation
 
@@ -30,10 +30,10 @@ Press `CTRL+SHIFT+P` to bring the command palette into view. Next type
 
 ## Plug-in Dependencies
 
-SublimeAVR plug-in is dependent of SublimeClang plug-in. This dependent plug-in
-will be installed automatically by the SublimeAVR plug-in if needed. If you decided
-to pre-install SublimeClang, SublimeAVR will notice this and will not overwrite
-or modify your installation.
+SublimeAVR plug-in is dependent of [SublimeClang](https://github.com/quarnster/SublimeClang)
+plug-in. This dependent plug-in will be installed automatically by the SublimeAVR plug-in if
+needed. If you decided to pre-install SublimeClang, SublimeAVR will notice this and will
+not overwrite or modify your installation.
 
 ## License
 

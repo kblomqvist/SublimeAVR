@@ -1,3 +1,7 @@
+from __future__ import print_function
+import os, zipfile
+import sublime, sublime_plugin
+
 """
 SublimeAVR plug-in for Sublime Text
 Copyright (c) 2014 Kim Blomqvist, kblomqvist.github.io
@@ -21,43 +25,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-"""
-Derived from Aery32 Sublime Text plug-in, which is licensed under the
-new BSD license:
-
-Copyright (c) 2012-2013, Muiku Oy
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
-
-   * Redistributions of source code must retain the above copyright notice,
-	 this list of conditions and the following disclaimer.
-
-   * Redistributions in binary form must reproduce the above copyright notice,
-	 this list of conditions and the following disclaimer in the documentation
-	 and/or other materials provided with the distribution.
-
-   * Neither the name of Muiku Oy nor the names of its contributors may be
-	 used to endorse or promote products derived from this software without
-	 specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-"""
-
-import os
-import zipfile
-import sublime, sublime_plugin
-from SublimeAVR import gcc, avrgcc, unix
+if not sublime.version() or int(sublime.version()) > 3000:
+	from SublimeAVR import gcc, avrgcc, unix
+else:
+	import gcc, avrgcc, unix
 
 PLUGIN_NAME = "SublimeAVR"
 PLUGIN_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -70,6 +41,7 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 		if not self.avrgcc:
 			print("%s: Could NOT find avr-gcc" % PLUGIN_NAME)
 			sublime.status_message("%s: Could NOT find avr-gcc" % PLUGIN_NAME)
+			return
 		self.settings.set("avr-gcc", self.avrgcc)
 
 		self.pm = PrerequisitiesManager()
@@ -94,7 +66,7 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 			self.location,
 			None,
 			None
-		)		
+		)
 
 	def location(self, location):
 		try:
@@ -217,7 +189,7 @@ class AVRSublimeProject():
 				{
 					"path": "."
 				}
-			], 
+			],
 			"settings":
 			{
 				"sublimeclang_enabled": True,
