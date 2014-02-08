@@ -25,7 +25,6 @@ def which(bin, path=""):
 	from os import environ
 	from os.path import join, isfile, pathsep
 	for p in path.split(path + pathsep + environ['PATH']):
-		print(p)
 		target = join(p, bin)
 		if isfile(target) or isfile(target + ".exe"):
 			return p
