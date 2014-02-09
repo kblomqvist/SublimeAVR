@@ -11,7 +11,7 @@ Project template with code completion for Atmel AVR (8-bit) microcontrollers.
 
 **Manual installation**
 
-- Download and unzip, or git clone, the plug-in into `Packages/SublimeAVR` folder. To access the folder called `Packages`, open Sublime Text and select *Preferences*, *Browse packages...*
+- Download and unzip, or git clone, the plug-in into `Packages/AVR` folder. To access the folder called `Packages`, open Sublime Text and select *Preferences*, *Browse packages...*
 - Note that the plug-in can't be installed *"in the Sublime Text 3 way"* in to the `Installed Packages` folder.
 
 ## Usage
