@@ -1,14 +1,15 @@
-# AVR (8-bit) Sublime Text 2/3 plug-in
+# AVR Sublime Text 2/3 plug-in
 
 ## Installation
 
 **Prerequisites**
 
-- Make sure that you have installed AVR8 Toolchain and set it in PATH (or define the path plug-in variable, see the Settings below).
+- Make sure that you have installed [Atmel AVR Toolchain](http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx) and set it in PATH (or use the plug-in settings to prepend the PATH).
+- In Windows you probably have to install Make as well. [Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm) is probably the best option.
 
 **Manual installation**
 
-- Download and unzip, or git clone, the plug-in into `Packages/SublimeAVR` folder. To access the folder called `Packages`, open Sublime Text and select *Preferences - Browse packages...*
+- Download and unzip, or git clone, the plug-in into `Packages/SublimeAVR` folder. To access the folder called `Packages`, open Sublime Text and select *Preferences*, *Browse packages...*
 - Note that the plug-in can't be installed *in the Sublime Text 3 way* in to the `Installed Packages` folder.
 
 ## Usage
@@ -18,7 +19,7 @@ Press `CTRL+SHIFT+P` to bring the command palette into view. Next type
 
 - __Create New Project__: Prompts the MCU type and directory where to create a new project.
   When done you can open the project file located under the directory where ever you created the project.
-  To do that select *Project - Open projects...*, browse to the project folder and double click
+  To do that select *Project*, *Open projects...*, browse to the project folder and double click
   `SublimeAVR.sublime-project` file.
 
 ### Shortcut keys
@@ -31,11 +32,11 @@ Press `CTRL+SHIFT+P` to bring the command palette into view. Next type
 
 ### Settings
 
-To edit plug-in settings select *Preferences* **-** *Package Settings* **-** *AVR*. If you don't want to alter the default settings, copy and paste those into the user side for editing.
+To edit plug-in settings select *Preferences*, *Package Settings*, *AVR*. If you don't want to alter the default settings, copy and paste those into the user side for editing.
 
-- **c_std** and **cpp_std**: C and C++ standard used when creating the project. These settings have affect to preprocessor define macros saved into `SublimeAVR.sublime-project`.
-- **optimize**: Compiler optimization level. Has also affect to preprosessor define macros.
-- **path**: The project PATH environment variable will be prepended with this.
+- __c_std__ and __cpp_std__: C and C++ standard used when creating the project. These settings have affect to preprocessor define macros saved into `SublimeAVR.sublime-project` file.
+- __optimize__: Compiler optimization level. Has also affect to preprosessor define macros.
+- __path__: The project PATH environment variable will be prepended with this.
 
 
 ## Plug-in Dependencies
