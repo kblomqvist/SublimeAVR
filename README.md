@@ -16,13 +16,9 @@ Project template with code completion for Atmel AVR (8-bit) microcontrollers.
 
 ## Usage
 
-Press `CTRL+SHIFT+P` to bring the command palette into view. Next type
-*AVR* and select a command which to run:
+Press `CTRL+SHIFT+P` to bring the command palette into view. Next type *AVR* and select a command which to run:
 
-- __Create New Project__: Prompts the MCU type and directory where to create a new project.
-  When done you can open the project file located under the directory where ever you created the project.
-  To do that select *Project*, *Open projects...*, browse to the project folder and double click
-  `SublimeAVR.sublime-project` file.
+- __Create New Project__: Prompts the MCU type and directory where to create a new project. When done you can open the project file located under the directory where ever you created the project. To do that select *Project*, *Open projects...*, browse to the project folder and open `SublimeAVR.sublime-project` file.
 
 ### Shortcut keys
 
@@ -43,10 +39,7 @@ To edit plug-in settings select *Preferences*, *Package Settings*, *AVR*. If you
 
 ## Plug-in Dependencies
 
-SublimeAVR plug-in is dependent of [SublimeClang](https://github.com/quarnster/SublimeClang)
-plug-in. This dependent plug-in will be installed automatically by the SublimeAVR plug-in if
-needed. If you decided to pre-install SublimeClang, SublimeAVR will notice this and will
-not overwrite or modify your installation.
+SublimeAVR plug-in is dependent of [SublimeClang](https://github.com/quarnster/SublimeClang) plug-in. This dependent plug-in will be installed automatically by the SublimeAVR plug-in if needed. If you decided to pre-install SublimeClang, SublimeAVR will notice this and will not overwrite or modify your installation.
 
 ## License
 
@@ -74,8 +67,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
 
-The plug-in is derived from [Aery32 Sublime Text plug-in](https://github.com/aery32/sublime-aery32),
-which is licensed under the new BSD license:
+The plug-in is derived from [Aery32 Sublime Text plug-in](https://github.com/aery32/sublime-aery32), which is licensed under the new BSD license:
 
 ```
 Copyright (c) 2012-2013, Muiku Oy
