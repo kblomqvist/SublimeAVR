@@ -4,7 +4,7 @@
 
 **Prerequisites**
 
-- Make sure that you have installed AVR8 Toolchain
+- Make sure that you have installed AVR8 Toolchain and set it in PATH (or define the path plug-in variable, see the Settings below).
 
 **Manual installation**
 
@@ -27,6 +27,16 @@ Press `CTRL+SHIFT+P` to bring the command palette into view. Next type
 - `ALT+D ALT+D` goes to the definition of whatever is under the current cursor position
 - `ALT+D ALT+I` goes to the implementation of whatever is under the current cursor position
 - `ALT+D ALT+B` come back to where ever you were before hitting goto the definition or implementation
+
+
+### Settings
+
+To edit plug-in settings select *Preferences* **-** *Package Settings* **-** *AVR*. If you don't want to alter the default settings, copy and paste those into the user side for editing.
+
+- **c_std** and **cpp_std**: C and C++ standard used when creating the project. These settings have affect to preprocessor define macros saved into `SublimeAVR.sublime-project`.
+- **optimize**: Compiler optimization level. Has also affect to preprosessor define macros.
+- **path**: The project PATH environment variable will be prepended with this.
+
 
 ## Plug-in Dependencies
 
