@@ -25,13 +25,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-if not sublime.version() or int(sublime.version()) > 3000:
-	from SublimeAVR import gcc, avrgcc, unix
-else:
-	import gcc, avrgcc, unix
-
 PLUGIN_NAME = "SublimeAVR"
 PLUGIN_PATH = os.path.dirname(os.path.abspath(__file__))
+
+if not sublime.version() or int(sublime.version()) > 3000:
+	from AVR import gcc, avrgcc, unix
+else:
+	import gcc, avrgcc, unix
 
 class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 	def run(self, *args, **kwargs):
