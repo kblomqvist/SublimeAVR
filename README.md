@@ -38,7 +38,7 @@ To edit plug-in settings select *Preferences*, *Package Settings*, *AVR*. If you
 
 - __c_std__ and __cpp_std__: C and C++ standard used when creating the project. These settings have affect to preprocessor define macros saved into `SublimeAVR.sublime-project` file.
 - __optimize__: Compiler optimization level. Has also affect to preprosessor define macros.
-- __path__: The project PATH environment variable will be prepended with this.
+- __path__: The project PATH environment variable will be prepended by this.
 
 
 ## Plug-in Dependencies
