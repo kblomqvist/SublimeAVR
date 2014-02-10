@@ -36,8 +36,8 @@ else:
 class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 	def run(self, *args, **kwargs):
 		self.settings = sublime.load_settings(PLUGIN_NAME + ".sublime-settings")
-
 		self.avrgcc = unix.which("avr-gcc", self.settings.get("path", ""))
+		
 		if not self.avrgcc:
 			print("%s: Could NOT find avr-gcc" % PLUGIN_NAME)
 			sublime.status_message("%s: Could NOT find avr-gcc" % PLUGIN_NAME)
@@ -70,9 +70,11 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 		)
 
 	def location(self, location):
+		new = True # Whether we should extract the template.
 		try:
 			os.makedirs(location)
 		except:
+			new = False
 			try:
 				with open(location + "/SublimeAVR.sublime-project"):
 					dialog = "SublimeAVR project found from \"%s\" ...\n\nDo you want to update it?" % location
@@ -80,10 +82,20 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 				dialog = "Location \"%s\" already exists ...\n\nStill want to start SublimeAVR project there?" % location
 			if not sublime.ok_cancel_dialog(dialog):
 				return
+		
+		if new:
+			try:
+				template = self.settings.get("template", PLUGIN_PATH + "/template.zip")
+				zf = zipfile.ZipFile(template)
+				zf.extractall(location)
+				zf.close()
+			except:
+				return
+			
 		self.settings.set("location", location)
-
 		projectfile = AVRSublimeProject(self.settings)
 		projectfile.save()
+
 
 class AVRSublimeProject():
 	def __init__(self, settings):
@@ -133,12 +145,11 @@ class AVRSublimeProject():
 		)
 
 	def save(self):
-		s = self.settings
 		try:
-			f = open(s.get("location") + "/SublimeAVR.sublime-project", 'w+')
-		except IOError as e:
+			location = self.settings.get("location")
+			f = open(location + "/SublimeAVR.sublime-project", 'w+')
+		except:
 			return False
-
 		try:
 			project = json.load(f)
 			project["build_systems"]["env"].update(self.template()["build_systems"]["env"])
@@ -146,18 +157,10 @@ class AVRSublimeProject():
 		except:
 			project = self.template()
 
-		f.seek(0)
-		f.write(json.dumps(project, sort_keys=False, indent=4))
-		f.truncate()
-		f.close()
-
-		try:
-			zf = zipfile.ZipFile(PLUGIN_PATH + "/template.zip")
-		except:
-			return False
-
-		zf.extractall(s.get("location"))
-		zf.close()
+		# Save SublimeAVR.sublime-project
+		f.seek(0).write(json.dumps(project, sort_keys=False, indent=4))
+		f.truncate().close()
+		return True
 
 	def template(self):
 		template = {
