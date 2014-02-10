@@ -1,5 +1,5 @@
 from __future__ import print_function
-import os, zipfile
+import os, json, zipfile
 import sublime, sublime_plugin
 
 """
@@ -45,7 +45,8 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 		self.settings.set("avr-gcc", self.avrgcc)
 
 		self.pm = PrerequisitiesManager()
-		self.pm.install("SublimeClang")
+		if not self.pm.install("SublimeClang"):
+			return
 
 		self.mcus = avrgcc.mmcu(self.avrgcc)
 		self.window.show_quick_panel(self.mcus, self.mcu)
@@ -132,8 +133,6 @@ class AVRSublimeProject():
 		)
 
 	def save(self):
-		import json
-
 		s = self.settings
 		try:
 			f = open(s.get("location") + "/SublimeAVR.sublime-project", 'w+')
@@ -223,7 +222,7 @@ class AVRSublimeProject():
 class PrerequisitiesManager():
 	def install(self, package):
 		if self.is_installed(package):
-			return
+			return None
 
 		print("%s: Installing the dependency package, %s..." % (PLUGIN_NAME, package), end=" ")
 		sublime.status_message("%s: Installing the dependency package, %s..." % (PLUGIN_NAME, package))
@@ -245,6 +244,9 @@ class PrerequisitiesManager():
 		except:
 			print("Failed.")
 			sublime.status_message("%s: Installing the dependency package, %s... Failed." % (PLUGIN_NAME, package))
+			return False
+
+		return True
 
 	def is_installed(self, package):
 		if os.path.exists(self.install_path(package)):

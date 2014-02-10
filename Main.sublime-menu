@@ -18,7 +18,7 @@
 							{
 								"command": "open_file", "args":
 								{
-									"file": "${packages}/SublimeAVR/SublimeAVR.sublime-settings"
+									"file": "${packages}/AVR/SublimeAVR.sublime-settings"
 								},
 								"caption": "Settings – Default"
 							},
