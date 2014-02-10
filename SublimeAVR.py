@@ -45,7 +45,7 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 		self.settings.set("avr-gcc", self.avrgcc)
 
 		self.pm = PrerequisitiesManager()
-		if not self.pm.install("SublimeClang"):
+		if self.pm.install("SublimeClang") == False:
 			return
 
 		self.mcus = avrgcc.mmcu(self.avrgcc)
