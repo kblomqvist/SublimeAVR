@@ -48,14 +48,14 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 		if self.pm.install("SublimeClang") == False:
 			return
 
-		self.mcus = avrgcc.mmcu(self.avrgcc)
-		self.window.show_quick_panel(self.mcus, self.mcu)
+		self.devices = avrgcc.devices(self.avrgcc)
+		self.window.show_quick_panel(self.devices, self.mcu)
 
 	def mcu(self, index):
 		if index == -1:
 			return
 
-		self.settings.set("mcu", self.mcus[index])
+		self.settings.set("mcu", self.devices[index])
 
 		initial_location = os.path.expanduser('~')
 		if self.window.folders():
@@ -158,8 +158,10 @@ class AVRSublimeProject():
 			project = self.template()
 
 		# Save SublimeAVR.sublime-project
-		f.seek(0).write(json.dumps(project, sort_keys=False, indent=4))
-		f.truncate().close()
+		f.seek(0)
+		f.write(json.dumps(project, sort_keys=False, indent=4))
+		f.truncate()
+		f.close()
 		return True
 
 	def template(self):

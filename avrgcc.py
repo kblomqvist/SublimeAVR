@@ -24,9 +24,9 @@ THE SOFTWARE.
 import os, subprocess
 import string, re
 
-def mmcu(location = None, gcc = "avr-gcc"):
+def devices(location = None):
 	p = subprocess.Popen(
-		gcc + " -mmcu=asd",
+		"avr-as -mlist-devices",
 		shell  = True,
 		cwd    = location,
 		stdout = subprocess.PIPE,
@@ -34,7 +34,7 @@ def mmcu(location = None, gcc = "avr-gcc"):
 	)
 	out, err = p.communicate()
 
-	m = re.search(r"are: (.*)", err.decode())
-	if not m:
-		return []
-	return m.group(1).split(' ')
+	devices = []
+	for line in out.decode().split(os.linesep)[1:]:
+		devices.extend(line.strip().split(" "))
+	return devices
