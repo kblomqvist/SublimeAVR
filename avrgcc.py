@@ -26,13 +26,16 @@ import string, re
 
 def devices(location = None):
 	p = subprocess.Popen(
-		"avr-as -mlist-devices",
+		os.path.join(location, "avr-as") + " -mlist-devices",
 		shell  = True,
-		cwd    = location,
+		# cwd    = location, This ain't working on OSX
 		stdout = subprocess.PIPE,
 		stderr = subprocess.PIPE
 	)
 	out, err = p.communicate()
+
+	if err:
+		raise Exception("In avrgcc.devices(): " + err.decode())
 
 	devices = []
 	for line in out.decode().split(os.linesep)[1:]:

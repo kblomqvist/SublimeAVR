@@ -26,11 +26,12 @@ import string, re
 
 def predefs(location = None, flags = [], gcc = "gcc"):
 	""" Returns GCC predefined macros """
+	gcc = os.path.join(location, gcc)
 	flags.extend(["-dM", "-E", "-", "<", os.devnull])
 	p = subprocess.Popen(
 		" ".join([gcc] + flags),
-		shell  = True,
-		cwd    = location,
+		shell = True,
+		# cwd = location, This ain't working on OSX
 		stdout = subprocess.PIPE,
 		stderr = subprocess.PIPE
 	)
