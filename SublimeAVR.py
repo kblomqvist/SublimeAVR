@@ -106,6 +106,9 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 			self.process_project_file()
 
 	def template_resolved(self, index):
+		if index == -1:
+			return
+
 		self.template = os.path.join(self.templates_search_path, self.templates[index] + ".zip")
 		try:
 			zf = zipfile.ZipFile(self.template)
