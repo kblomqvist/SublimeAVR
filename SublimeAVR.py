@@ -48,54 +48,81 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 		if self.pm.install("SublimeClang") == False:
 			return
 
-		self.devices = avrgcc.devices(self.avrgcc)
-		self.window.show_quick_panel(self.devices, self.mcu)
+		# Initial location
+		self.initial_location = os.path.expanduser('~')
+		if self.window.folders():
+			self.initial_location = self.window.folders()[0]
 
-	def mcu(self, index):
+		# Ask device (MCU)
+		self.devices = avrgcc.devices(self.avrgcc)
+		self.window.show_quick_panel(self.devices, self.mcu_resolved)
+
+	def mcu_resolved(self, index):
 		if index == -1:
 			return
+		else:
+			self.settings.set("mcu", self.devices[index])
 
-		self.settings.set("mcu", self.devices[index])
-
-		initial_location = os.path.expanduser('~')
-		if self.window.folders():
-			initial_location = self.window.folders()[0]
-
+		# Ask location
 		self.window.show_input_panel(
-			"Create new project to: ",
-			initial_location,
-			self.location,
+			"Create/Update project in folder: ",
+			self.initial_location,
+			self.location_resolved,
 			None,
 			None
 		)
 
-	def location(self, location):
-		new = True # Whether we should extract the template.
+	def location_resolved(self, location):
+		self.location = location
+		self.settings.set("location", location)
 		try:
+			self.new_project = True
 			os.makedirs(location)
 		except:
-			new = False
+			self.new_project = False
 			try:
 				with open(location + "/SublimeAVR.sublime-project"):
 					dialog = "SublimeAVR project found from \"%s\" ...\n\nDo you want to update it?" % location
 			except:
+				self.new_project = True
 				dialog = "Location \"%s\" already exists ...\n\nStill want to start SublimeAVR project there?" % location
 			if not sublime.ok_cancel_dialog(dialog):
 				return
-		
-		if new:
-			try:
-				template = self.settings.get("template", PLUGIN_PATH + "/template.zip")
-				zf = zipfile.ZipFile(template)
-				zf.extractall(location)
-				zf.close()
-			except:
-				return
-			
-		self.settings.set("location", location)
+
+		if self.new_project:
+			self.templates = []
+			self.templates_search_path = os.path.join(PLUGIN_PATH, "templates")
+			for f in os.listdir(self.templates_search_path):
+				if f.endswith(".zip"):
+					self.templates.append(f.replace(".zip", ""))
+			if not self.templates:
+				print("%s: Cannot find a single tamplate" % PLUGIN_NAME)
+				sublime.status_message("%s: Cannot find a single template." % PLUGIN_NAME)
+
+			# Ask template
+			self.window.show_quick_panel(self.templates, self.template_resolved)
+
+		else:
+			self.process_project_file()
+
+	def template_resolved(self, index):
+		self.template = os.path.join(self.templates_search_path, self.templates[index] + ".zip")
+		try:
+			zf = zipfile.ZipFile(self.template)
+			zf.extractall(self.location)
+			zf.close()
+		except:
+			print("%S: Could not extract the template '%s'" % (PLUGIN_NAME, self.template))
+			return
+		self.process_project_file()
+
+	def process_project_file(self):
 		projectfile = AVRSublimeProject(self.settings)
 		projectfile.save()
 
+		verb = "created" if self.new_project else "updated"
+		print("%s: Project %s in '%s'" % (PLUGIN_NAME, verb, self.location))
+		sublime.status_message("%s: Project %s in '%s'" % (PLUGIN_NAME, verb, self.location))
 
 class AVRSublimeProject():
 	def __init__(self, settings):
