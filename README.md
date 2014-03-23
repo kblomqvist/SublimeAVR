@@ -2,7 +2,7 @@
 
 Project template with code completion for Atmel AVR (8-bit) microcontrollers.
 
-# Installation
+## Installation
 
 **Prerequisites**
 
@@ -22,7 +22,7 @@ First make sure that you have a Package Control plug-in installed (version 2.0.0
 - Download and unzip, or git clone, the plug-in into `Packages/AVR` folder. To access the folder called `Packages`, open Sublime Text and select *Preferences*, *Browse packages...*
 - Note that the plug-in can't be installed *"in the Sublime Text 3 way"* in to the `Installed Packages` folder.
 
-# Usage
+## Usage
 
 Press `CTRL+SHIFT+P` to bring the command palette into view. Next type *AVR* and select a command which to run:
 
@@ -55,7 +55,7 @@ Templates are zip-files, which are searched from the `templates/` plug-in folder
 If you have a good *general purpose* template, for example, for Arduino I'm  happy to merge it into the plug-in.
 
 
-# License
+## License
 
 This SublimeAVR Sublime Text plug-in is licensed under the MIT license:
 
@@ -113,7 +113,7 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-# Third party Packages used
+## Third party Packages used
 
 SublimeAVR plug-in is dependent of [SublimeClang](https://github.com/quarnster/SublimeClang) plug-in. This dependent plug-in will be installed automatically by the SublimeAVR plug-in if needed. If you decided to pre-install SublimeClang, SublimeAVR will notice this and will not overwrite or modify your installation.
 
