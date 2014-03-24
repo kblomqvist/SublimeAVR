@@ -107,6 +107,9 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 
 	def template_resolved(self, index):
 		if index == -1:
+			if os.listdir(self.location) == []:
+				# Avoid polluting user's file system with empty folders
+				os.remove(self.location)
 			return
 
 		self.template = os.path.join(self.templates_search_path, self.templates[index] + ".zip")
