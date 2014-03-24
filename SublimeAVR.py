@@ -94,7 +94,9 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 			self.templates_search_path = os.path.join(PLUGIN_PATH, "templates")
 			for f in os.listdir(self.templates_search_path):
 				if f.endswith(".zip"):
-					self.templates.append(f.replace(".zip", ""))
+					template_name = f.replace(".zip", "")
+					template_name = template_name.replace("_", " ")
+					self.templates.append(template_name)
 			if not self.templates:
 				print("%s: Cannot find a single tamplate" % PLUGIN_NAME)
 				sublime.status_message("%s: Cannot find a single template." % PLUGIN_NAME)
@@ -112,7 +114,7 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 				os.remove(self.location)
 			return
 
-		self.template = os.path.join(self.templates_search_path, self.templates[index] + ".zip")
+		self.template = os.path.join(self.templates_search_path, self.templates[index].replace(" ", "_") + ".zip")
 		try:
 			zf = zipfile.ZipFile(self.template)
 			zf.extractall(self.location)
