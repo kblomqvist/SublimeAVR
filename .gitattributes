@@ -1,5 +1,5 @@
 * text=auto
 text eol=lf
 
-templates/*.zip binary
-SublimeClang.sublime-package binary
+*.zip binary
+*.sublime-package binary
