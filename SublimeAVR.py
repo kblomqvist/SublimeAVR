@@ -111,7 +111,7 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 		if index == -1:
 			if os.listdir(self.location) == []:
 				# Avoid polluting user's file system with empty folders
-				os.remove(self.location)
+				os.rmdir(self.location)
 			return
 
 		self.template = os.path.join(self.templates_search_path, self.templates[index].replace(" ", "_") + ".zip")
