@@ -49,9 +49,7 @@ To edit plug-in settings select *Preferences*, *Package Settings*, *AVR*. If you
 
 ### Templates
 
-Templates are zip-files, which are searched from the `templates/` plug-in folder. You can put your own template files there as well and use them via the plug-in.
-
-If you have a good *general purpose* template, for example, for Arduino I'm  happy to merge it into the plug-in.
+Templates are zip-files searched from the `templates/` plug-in folder. You can put your own template files there as well and use them via the plug-in. Take a cue from the basic tamplate, which should be included in this plug-in. If you have a good *general purpose* template, for example for Arduino, I'm happy to merge it into the plug-in.
 
 
 ## License
