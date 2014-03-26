@@ -13,8 +13,8 @@ Project template with code completion for Atmel AVR (8-bit) microcontrollers.
 
 First make sure that you have a Package Control plug-in installed (version 2.0.0 or later). After then ...
 
-- Press CTRL+SHIFT+P, type install and press enter.
-- Select AVR from the list and press enter.
+- Press `CTRL+SHIFT+P`, type install and press enter.
+- Select _AVR_ from the list and press enter.
 - Done.
 
 **Manual installation**
@@ -26,7 +26,8 @@ First make sure that you have a Package Control plug-in installed (version 2.0.0
 
 Press `CTRL+SHIFT+P` to bring the command palette into view. Next type *AVR* and select a command which to run:
 
-__Create/Update Project__  
+__Create/Update Project__
+
 - Prompts the MCU type and directory where to create a new project. After that a template is asked.
 - If the directory already contains `SublimeAVR.sublime-project` file, the sublime-project file will be updated. Other files aren't touched and thus there's no reason to ask a template either.
 - When done you can open the project. To do that select *Project*, *Open projects...*, browse to the project folder and open `SublimeAVR.sublime-project` file.
