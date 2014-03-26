@@ -1,7 +1,5 @@
 # AVR Sublime Text plug-in
 
-Project template with code completion for Atmel AVR (8-bit) microcontrollers.
-
 ## Installation
 
 **Prerequisites**
