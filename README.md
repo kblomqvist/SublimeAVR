@@ -4,7 +4,7 @@
 
 **Prerequisites**
 
-- Make sure that you have installed [Atmel AVR Toolchain](http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx) and set it in PATH, or use the plug-in settings to prepend PATH with your installation directory.
+- Make sure that you have installed [AVR Toolchain](http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx) and set it in PATH, or use the plug-in settings to prepend PATH with your installation directory. Works also with [CrossPack](http://www.obdev.at/products/crosspack/index.html).
 - In Windows you probably have to install Make as well. [Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm) is a good option.
 
 **Installation via Package Control (recommended)**
