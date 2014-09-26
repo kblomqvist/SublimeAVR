@@ -1,8 +1,6 @@
 ![chip](http://www.wvshare.com/img/sort_logo/AVR_LOGO.jpg)
 # AVR Sublime Text plug-in
 
-## Installation
-
 **Prerequisites**
 
 - Make sure that you have installed [AVR Toolchain](http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx) and set it in PATH. You can also use the [CrossPack](http://www.obdev.at/products/crosspack/index.html) or any other AVR Toolchain distribution available.
