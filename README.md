@@ -55,7 +55,7 @@ Templates are zip-files searched from the `templates/` plug-in folder. You can p
 
 1. SublimeText throws an error `Decode error - output not utf-8` when trying to buid.
 
-   *Open your project `SublimeAVR.sublime-project` file and add the following new setting into the `build_systems` dictionary:*  
+   *Open your project's `SublimeAVR.sublime-project` file and add the following new setting into the build_systems dictionary --  right after the selector setting for example:*  
    ```
    "encoding": "cp1252"
    ```
