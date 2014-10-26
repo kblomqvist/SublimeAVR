@@ -51,6 +51,16 @@ To edit plug-in settings select *Preferences*, *Package Settings*, *AVR*. If you
 Templates are zip-files searched from the `templates/` plug-in folder. You can put your own template files there as well and use them via the plug-in. Take a cue from the basic tamplate, which should be included in this plug-in. If you have a good *general purpose* template, for example for Arduino, I'm happy to merge it into the plug-in.
 
 
+### Troubleshooting
+
+1. *SublimeText throws an error `Decode error - output not utf-8` when trying to buid.*
+
+   Open your project `SublimeAVR.sublime-project `file and add a new setting into *build_systems* dictionary:  
+   ```
+   "encoding": "cp1252"
+   ```
+
+
 ## License
 
 This SublimeAVR Sublime Text plug-in is licensed under the MIT license:
