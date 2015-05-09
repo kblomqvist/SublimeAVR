@@ -24,7 +24,8 @@ def which(bin, path=""):
 	""" Mimics Linux / Unix Command: which """
 	from os import environ
 	from os.path import normpath, join, isfile, pathsep
-	for p in path.split(path + pathsep + environ['PATH']):
+	path = path + pathsep + environ['PATH']
+	for p in path.split(pathsep):
 		target = join(p, bin)
 		if isfile(target) or isfile(target + ".exe"):
 			return normpath(p)
