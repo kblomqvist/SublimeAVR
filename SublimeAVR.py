@@ -200,6 +200,14 @@ class AVRSublimeProject():
 		return True
 
 	def template(self):
+		mcu = self.settings.get("mcu")
+		c_std = self.settings.get("c_std", "c99")
+		cpp_std = self.settings.get("cpp_std", "c++98")
+
+		with open(os.path.join(PLUGIN_PATH, "avrdude_partno.json")) as f:
+			dude_parts = json.load(f)
+		dude_flags = "-p " + dude_parts[mcu] + " -c dragon_isp"
+
 		template = {
 			"build_systems":
 			[
@@ -209,9 +217,10 @@ class AVRSublimeProject():
 						"make"
 					],
 					"env": {
-						"MMCU": self.settings.get("mcu"),
-						"CSTD": self.settings.get("c_std", "c99"),
-						"CXXSTD": self.settings.get("cpp_std", "c++98")
+						"MMCU": mcu,
+						"CSTD": c_std,
+						"CXXSTD": cpp_std,
+						"AVRDUDE_FLAGS": dude_flags,
 					},
 					"path": os.environ['PATH'],
 					"working_dir": "${project_path}",
@@ -219,7 +228,8 @@ class AVRSublimeProject():
 					"variants": [
 						{ "cmd": ["make", "re"], "name": "Rebuild" },
 						{ "cmd": ["make", "clean"], "name": "Clean" },
-						{ "cmd": ["make", "debug"], "name": "Debug" }
+						{ "cmd": ["make", "debug"], "name": "Debug" },
+						{ "cmd": ["make", "avrdude"], "name": "Run" }, # Ctrl+Shift+B
 					]
 				}
 			],
