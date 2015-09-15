@@ -206,7 +206,11 @@ class AVRSublimeProject():
 
 		with open(os.path.join(PLUGIN_PATH, "avrdude_partno.json")) as f:
 			dude_parts = json.load(f)
-		dude_flags = "-p " + dude_parts[mcu] + " -c dragon_isp"
+
+		if mcu in dude_parts:
+			dude_flags = "-p " + dude_parts[mcu] + " -c dragon_isp"
+		else:
+			dude_flags = ""
 
 		template = {
 			"build_systems":
