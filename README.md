@@ -1,5 +1,5 @@
-![chip](http://www.wvshare.com/img/sort_logo/AVR_LOGO.jpg)
 # AVR Sublime Text plug-in
+<img scr="http://www.atmel.com/Images/AVRchip_250x218.png" align="right" />
 
 **Prerequisites**
 
