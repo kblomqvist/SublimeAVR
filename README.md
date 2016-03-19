@@ -1,5 +1,5 @@
 # AVR Sublime Text plug-in
-<img scr="http://www.atmel.com/Images/AVRchip_250x218.png" align="right" />
+<img src="http://www.atmel.com/Images/AVRchip_250x218.png" align="right" />
 
 **Prerequisites**
 
