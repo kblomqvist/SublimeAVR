@@ -148,6 +148,7 @@ class AVRSublimeProject():
 
 		self.c = ["-std=%s" % s.get("c_std", "c99")]
 		self.c.append("-I%s" % os.path.normpath("%s/../avr/include" % self.settings.get("avr-gcc")))
+		self.c.append("-I%s" % os.path.normpath("%s/../lib/avr/include" % self.settings.get("avr-gcc"))) # Linux
 		self.c.append("-I%s" % os.path.normpath("%s/../lib/gcc/avr/%s/include" % (self.settings.get("avr-gcc"), self.version)))
 		self.c.append("-I%s" % os.path.normpath("%s/../lib/gcc/avr/%s/include-fixed" % (self.settings.get("avr-gcc"), self.version)))
 		self.c.extend(
@@ -168,6 +169,7 @@ class AVRSublimeProject():
 
 		self.cpp = ["-std=%s" % s.get("cpp_std", "c++98")]
 		self.cpp.append("-I%s" % os.path.normpath("%s/../avr/include" % self.settings.get("avr-gcc")))
+		self.cpp.append("-I%s" % os.path.normpath("%s/../lib/avr/include" % self.settings.get("avr-gcc"))) # Linux
 		self.cpp.append("-I%s" % os.path.normpath("%s/../lib/gcc/avr/%s/include" % (self.settings.get("avr-gcc"), self.version)))
 		self.cpp.append("-I%s" % os.path.normpath("%s/../lib/gcc/avr/%s/include-fixed" % (self.settings.get("avr-gcc"), self.version)))
 		self.cpp.extend(
