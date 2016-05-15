@@ -35,7 +35,7 @@ In Linux SublimeClang needs few extra steps to work. After creating your first p
 
 ```bash
 locate libclang.so
-ln -s [location] libclang.so
+ln -s [location] internals/libclang.so
 ```
 
 If `libclang.so` wasn't found install it via your Linux distrubution's package manager. For example, in Debian use aptitude:
