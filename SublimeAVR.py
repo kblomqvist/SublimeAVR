@@ -48,10 +48,14 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 		if self.pm.install("SublimeClang") == False:
 			return
 
-		# Initial location
-		self.initial_location = os.path.expanduser('~')
-		if self.window.folders():
-			self.initial_location = self.window.folders()[0]
+		# Resolve default workdir for project location
+		self.workdir = self.settings.get("workdir", "")
+		if not self.workdir:
+			self.workdir = os.path.expanduser('~')
+			if self.window.folders():
+				self.workdir = self.window.folders()[0]
+		self.settings.set("workdir", self.workdir)
+
 
 		# Ask device (MCU)
 		self.devices = avrgcc.devices(self.avrgcc)
@@ -66,7 +70,7 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 		# Ask location
 		self.window.show_input_panel(
 			"Create/Update project in folder: ",
-			self.initial_location,
+			self.workdir,
 			self.location_resolved,
 			None,
 			None
