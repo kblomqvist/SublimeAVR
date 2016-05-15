@@ -22,16 +22,14 @@ THE SOFTWARE.
 """
 
 import os, subprocess
-import string, re
+import re, tempfile
 
-def predefs(location = None, flags = [], gcc = "gcc"):
+def predefs(location = "", flags = [], gcc = "gcc"):
 	""" Returns GCC predefined macros """
-	gcc = os.path.join(location, gcc)
-	flags.extend(["-dM", "-E", "-", "<", os.devnull])
+	flags.extend(["-dM", "-E"])
+	_, input_file = tempfile.mkstemp(suffix=".c")
 	p = subprocess.Popen(
-		" ".join([gcc] + flags),
-		shell = True,
-		# cwd = location, This ain't working on OSX
+		[os.path.join(location, gcc)] + flags + [input_file],
 		stdout = subprocess.PIPE,
 		stderr = subprocess.PIPE
 	)

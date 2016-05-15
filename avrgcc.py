@@ -22,13 +22,10 @@ THE SOFTWARE.
 """
 
 import os, subprocess
-import string, re
 
-def devices(location = None):
+def devices(location = ""):
 	p = subprocess.Popen(
-		"avr-as" + " -mlist-devices",
-		shell  = True,
-		cwd    = location, # This ain't working on OSX?
+		[os.path.join(location, "avr-as"), "-mlist-devices"],
 		stdout = subprocess.PIPE,
 		stderr = subprocess.PIPE
 	)
