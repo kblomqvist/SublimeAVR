@@ -29,6 +29,30 @@ __Create/Update Project__
 - When done you can open the project. To do that select *Project*, *Open projects...*, browse to the project folder and open `SublimeAVR.sublime-project` file.
 - In case the given project directory already contains `SublimeAVR.sublime-project`, the update is applied. Other files aren't touched.
 
+*Note:*
+
+In Linux SublimeClang needs few extra steps to work. After creating your first project open command-line and cd into `SublimeClang` package folder. You need to place `libclang.so` into `internals` folder:
+
+```bash
+locate libclang.so
+ln -s [location] libclang.so
+```
+
+If `libclang.so` wasn't found install it via your Linux distrubution's package manager. For example, in Debian use aptitude:
+
+```bash
+sudo aptitude install libclang-dev
+```
+
+Lastly `libcache.so` needs to be built:
+
+```bash
+mkdir -p src/build
+cd src/build
+cmake ..
+make
+```
+
 ### Shortcut keys
 
 - `CTRL+B` builds the project
