@@ -154,7 +154,7 @@ class AVRSublimeProject():
 					location=s.get("avr-gcc"),
 					flags=[
 						self.c[0],
-						"-x c",
+						"-xc",
 						"-mmcu=%s" % s.get("mcu"),
 						"-O%s" % s.get("optimize", "s")
 					]
@@ -174,7 +174,7 @@ class AVRSublimeProject():
 					location = s.get("avr-gcc"),
 					flags = [
 						self.cpp[0],
-						"-x c++",
+						"-xc++",
 						"-mmcu=%s" % s.get("mcu"),
 						"-O%s" % s.get("optimize", "s")
 					]
