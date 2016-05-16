@@ -3,5 +3,5 @@
 	"cpp_std": "c++98",
 	"optimize": "s",
 	"path": "",
-	"workdir": ""
+	"workdir": "~"
 }

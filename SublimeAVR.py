@@ -52,13 +52,11 @@ class AvrNewProjectCommand(sublime_plugin.WindowCommand):
 			return
 
 		# Resolve default workdir for project location
-		self.workdir = self.settings.get("workdir", "")
-		if not self.workdir:
-			self.workdir = os.path.expanduser('~')
-			if self.window.folders():
-				self.workdir = self.window.folders()[0]
+		self.workdir = self.settings.get("workdir", "~")
+		if not self.workdir: # Remember to check if empty
+			self.workdir = "~"
+		self.workdir = os.path.expanduser(self.workdir)
 		self.settings.set("workdir", self.workdir)
-
 
 		# Ask device (MCU)
 		self.devices = avrgcc.devices(self.avrgcc)
